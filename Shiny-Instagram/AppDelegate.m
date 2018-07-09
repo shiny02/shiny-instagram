@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Parse/Parse.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,23 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    ParseClientConfiguration *config = [ParseClientConfiguration   configurationWithBlock:^(id<ParseMutableClientConfiguration> configuration) {
+        
+        configuration.applicationId = @"shinyId";
+        configuration.clientKey = @"dootdootdooot";
+        configuration.server = @"http://shinyinsta.herokuapp.com/parse";
+    }];
+    
+    
+    [Parse initializeWithConfiguration:config];
+    
+    if (PFUser.currentUser) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"TimelineNavigationViewController"];
+        NSLog(@"Hello %@!", PFUser.currentUser.username); 
+    }
+    
     return YES;
 }
 
