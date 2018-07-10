@@ -1,6 +1,6 @@
-# Project 3 - *Shiny Instagram*
+# Project 4 - *Instagram*
 
-**Name of your app** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
+**Instagram** is a photo sharing app using Parse as its backend.
 
 Time spent: **X** hours spent in total
 
@@ -8,37 +8,30 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] User sees app icon in home screen and styled launch screen
-- [ ] User can sign in using OAuth login flow
-- [ ] User can Logout
-- [ ] User can view last 20 tweets from their home timeline
-- [ ] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
-- [ ] User can pull to refresh.
-- [ ] User can tap the retweet and favorite buttons in a tweet cell to retweet and/or favorite a tweet.
-- [ ] User can compose a new tweet by tapping on a compose button.
-- [ ] Using AutoLayout, the Tweet cell should adjust it's layout for iPhone 7, Plus and SE device sizes as well as accommodate device rotation.
+- [x] User can sign up to create a new account using Parse authentication
+- [x] User can log in and log out of his or her account
+- [x] The current signed in user is persisted across app restarts
+- [ ] User can take a photo, add a caption, and post it to "Instagram"
+- [ ] User can view the last 20 posts submitted to "Instagram"
+- [ ] User can pull to refresh the last 20 posts submitted to "Instagram"
+- [ ] User can tap a post to view post details, including timestamp and caption.
 
 The following **optional** features are implemented:
 
-- [ ] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
-- [ ] User can view their profile in a *profile tab*
-- Contains the user header view: picture and tagline
-- Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Profile view should include that user's timeline
-- [ ] User should display the relative timestamp for each tweet "8m", "7h"
-- [ ] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count. Refer to [[this guide|unretweeting]] for help on implementing unretweeting.
-- [ ] Links in tweets are clickable.
-- [ ] User can tap the profile image in any tweet to see another user's profile
-- Contains the user header view: picture and tagline
-- Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
-- [ ] When composing, you should have a countdown for the number of characters remaining for the tweet (out of 140) (**1 point**)
-- [ ] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
-- [ ] User can reply to any tweet, and replies should be prefixed with the username and the reply_id should be set when posting the tweet (**2 points**)
-- [ ] User sees embedded images in tweet if available 
-- [ ] User can switch between timeline, mentions, or profile view through a tab bar (**3 points**)
-- [ ] Profile Page: pulling down the profile page should blur and resize the header image. (**4 points**)
-
+- [ ] Run your app on your phone and use the camera to take the photo
+- [ ] Style the login page to look like the real Instagram login page.
+- [ ] Style the feed to look like the real Instagram feed.
+- [ ] User can use a tab bar to switch between all "Instagram" posts and posts published only by the user. AKA, tabs for Home Feed and Profile
+- [ ] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
+- [ ] Show the username and creation time for each post
+- [ ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse
+- User Profiles:
+- [ ] Allow the logged in user to add a profile photo
+- [ ] Display the profile photo with each post
+- [ ] Tapping on a post's username or profile photo goes to that user's profile page
+- [ ] User can comment on a post and see all comments for each post in the post details screen.
+- [ ] User can like a post and see number of likes for each post in the post details screen.
+- [ ] Implement a custom camera view.
 
 The following **additional** features are implemented:
 
@@ -57,15 +50,16 @@ Here's a walkthrough of implemented user stories:
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-## Notes
-
-Describe any challenges encountered while building the app.
-
 ## Credits
 
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
+
+
+## Notes
+
+Describe any challenges encountered while building the app.
 
 ## License
 

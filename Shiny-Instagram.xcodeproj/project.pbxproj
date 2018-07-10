@@ -10,6 +10,9 @@
 		5A8B65667446FC2A2191A085 /* libPods-Shiny-InstagramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FC72B6C0609E2D61A8875F /* libPods-Shiny-InstagramTests.a */; };
 		64F387E2100A6393E11E4723 /* libPods-Shiny-InstagramUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF60B1DE7A2EA237DEB0B83 /* libPods-Shiny-InstagramUITests.a */; };
 		85A3053B20F4127100549368 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A3053A20F4127100549368 /* TimelineViewController.m */; };
+		85A3053E20F41B0A00549368 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A3053D20F41B0A00549368 /* ComposeViewController.m */; };
+		85A3054420F41F4D00549368 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A3054320F41F4D00549368 /* FeedCell.m */; };
+		85A3054720F425F800549368 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A3054620F425F800549368 /* Post.m */; };
 		85BDF0A320F33CE10079FB7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BDF0A220F33CE10079FB7F /* AppDelegate.m */; };
 		85BDF0A620F33CE10079FB7F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BDF0A520F33CE10079FB7F /* ViewController.m */; };
 		85BDF0A920F33CE10079FB7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85BDF0A720F33CE10079FB7F /* Main.storyboard */; };
@@ -48,6 +51,12 @@
 		74FC72B6C0609E2D61A8875F /* libPods-Shiny-InstagramTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Shiny-InstagramTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A3053920F4127100549368 /* TimelineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
 		85A3053A20F4127100549368 /* TimelineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
+		85A3053C20F41B0A00549368 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		85A3053D20F41B0A00549368 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		85A3054220F41F4D00549368 /* FeedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FeedCell.h; sourceTree = SOURCE_ROOT; };
+		85A3054320F41F4D00549368 /* FeedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedCell.m; sourceTree = SOURCE_ROOT; };
+		85A3054520F425F800549368 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Post.h; path = "Shiny-Instagram/Post.h"; sourceTree = SOURCE_ROOT; };
+		85A3054620F425F800549368 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = "Shiny-Instagram/Post.m"; sourceTree = SOURCE_ROOT; };
 		85BDF09E20F33CE10079FB7F /* Shiny-Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shiny-Instagram.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85BDF0A120F33CE10079FB7F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		85BDF0A220F33CE10079FB7F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -112,6 +121,8 @@
 		85A3053620F4100700549368 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				85A3053C20F41B0A00549368 /* ComposeViewController.h */,
+				85A3053D20F41B0A00549368 /* ComposeViewController.m */,
 				85BDF0A420F33CE10079FB7F /* ViewController.h */,
 				85BDF0A520F33CE10079FB7F /* ViewController.m */,
 				85A3053920F4127100549368 /* TimelineViewController.h */,
@@ -124,6 +135,8 @@
 		85A3053720F4101E00549368 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				85A3054220F41F4D00549368 /* FeedCell.h */,
+				85A3054320F41F4D00549368 /* FeedCell.m */,
 			);
 			name = Views;
 			path = "New Group";
@@ -132,6 +145,8 @@
 		85A3053820F4102900549368 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				85A3054520F425F800549368 /* Post.h */,
+				85A3054620F425F800549368 /* Post.m */,
 			);
 			name = Models;
 			path = "New Group1";
@@ -416,7 +431,10 @@
 				85BDF0A620F33CE10079FB7F /* ViewController.m in Sources */,
 				85A3053B20F4127100549368 /* TimelineViewController.m in Sources */,
 				85BDF0B120F33CE30079FB7F /* main.m in Sources */,
+				85A3054420F41F4D00549368 /* FeedCell.m in Sources */,
+				85A3053E20F41B0A00549368 /* ComposeViewController.m in Sources */,
 				85BDF0A320F33CE10079FB7F /* AppDelegate.m in Sources */,
+				85A3054720F425F800549368 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
