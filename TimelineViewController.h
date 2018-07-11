@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
 @property (strong, nonatomic) NSArray * posts; 
 @end

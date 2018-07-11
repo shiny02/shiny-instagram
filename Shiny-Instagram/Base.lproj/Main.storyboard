@@ -65,14 +65,14 @@
                     <connections>
                         <outlet property="password" destination="Hev-Be-oBR" id="HYp-9B-08Z"/>
                         <outlet property="username" destination="qMA-CM-Uat" id="dZo-e3-Me6"/>
-                        <segue destination="b0o-Fy-LzV" kind="presentation" identifier="loginSegue" id="Gya-fk-RMl"/>
+                        <segue destination="dMQ-gk-IER" kind="presentation" identifier="loginSegue" id="upJ-NG-tSw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="118.29085457271366"/>
+            <point key="canvasLocation" x="-1602" y="-866"/>
         </scene>
-        <!--Timeline View Controller-->
+        <!--Instagram-->
         <scene sceneID="Dd4-PN-km2">
             <objects>
                 <viewController storyboardIdentifier="TimelineViewController" id="hHL-zS-EUf" customClass="TimelineViewController" sceneMemberID="viewController">
@@ -98,7 +98,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bSm-Nv-PyA">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bSm-Nv-PyA" customClass="PFImageView">
                                                     <rect key="frame" x="15" y="41" width="345" height="345"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="345" id="nW7-87-Vzc"/>
@@ -125,6 +125,12 @@
                                                 <constraint firstAttribute="trailing" secondItem="Bqy-I6-LMc" secondAttribute="trailing" constant="15" id="zxT-Ty-3Dd"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="caption" destination="Bqy-I6-LMc" id="Mf3-uG-pQ0"/>
+                                            <outlet property="photoView" destination="bSm-Nv-PyA" id="ju4-9P-NZ0"/>
+                                            <outlet property="userName" destination="C9e-lH-hNp" id="ATC-dR-nnP"/>
+                                            <segue destination="uep-nP-h0b" kind="show" identifier="detailSegue" id="7Z8-Qn-KXK"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -132,7 +138,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="D2L-dI-bAq"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9WP-U5-nQ7">
+                    <navigationItem key="navigationItem" title="Instagram" id="9WP-U5-nQ7">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="nbL-7M-yQ5">
                             <connections>
                                 <action selector="didTapLogout:" destination="hHL-zS-EUf" id="dvI-0T-lsW"/>
@@ -145,14 +151,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="rbK-YM-ZuO" id="U0i-PX-urS"/>
                         <segue destination="81I-ZI-AKf" kind="presentation" identifier="postSegue" id="sQG-Lq-O9A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JdZ-tf-ISt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1892" y="115.59220389805098"/>
+            <point key="canvasLocation" x="-1367" y="955"/>
         </scene>
-        <!--Compose View Controller-->
+        <!--Post Photo-->
         <scene sceneID="NmL-kB-te4">
             <objects>
                 <viewController id="LDs-Mf-oHT" customClass="ComposeViewController" sceneMemberID="viewController">
@@ -175,7 +182,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="UhQ-Xh-9wr"/>
                     </view>
-                    <navigationItem key="navigationItem" id="tLw-hs-IL1">
+                    <navigationItem key="navigationItem" title="Post Photo" id="tLw-hs-IL1">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="EaK-nj-iME">
                             <connections>
                                 <action selector="didTapCancel:" destination="LDs-Mf-oHT" id="OV0-Lb-xtx"/>
@@ -194,12 +201,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bI1-pt-9CG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3640.8000000000002" y="116.49175412293854"/>
+            <point key="canvasLocation" x="-500" y="2118"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Feed-->
         <scene sceneID="vqF-dh-yEh">
             <objects>
                 <navigationController storyboardIdentifier="TimelineNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="b0o-Fy-LzV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Feed" image="feed_tab" id="QqE-JH-w1U"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="IBv-gC-qbp">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -212,7 +220,41 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLN-Ka-AfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="952.79999999999995" y="115.59220389805098"/>
+            <point key="canvasLocation" x="-1367" y="-62"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="iKB-kb-8Ol">
+            <objects>
+                <viewController id="HeO-16-tvP" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="W5h-yw-R88">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="qr1-HK-wAQ"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MCW-Kq-DtZ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qOo-gs-aQ1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1210" y="-63"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="6gX-7C-eqD">
+            <objects>
+                <tabBarController id="dMQ-gk-IER" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZlV-mf-EMC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="b0o-Fy-LzV" kind="relationship" relationship="viewControllers" id="qLU-QD-0Sw"/>
+                        <segue destination="7Xs-Oa-gYa" kind="relationship" relationship="viewControllers" id="OZf-78-s46"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Omg-LJ-UKZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-281" y="-867"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4zg-Sl-4QT">
@@ -230,11 +272,81 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d92-GA-96l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2701.5999999999999" y="116.49175412293854"/>
+            <point key="canvasLocation" x="-500" y="955"/>
+        </scene>
+        <!-- -->
+        <scene sceneID="H9U-4q-w84">
+            <objects>
+                <viewController id="uep-nP-h0b" customClass="PostDetailViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BDe-es-ym7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoW-LK-vH9" customClass="PFImageView">
+                                <rect key="frame" x="44" y="85" width="287" height="274"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6o-R7-1ZV">
+                                <rect key="frame" x="44" y="399" width="287" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Cx-an-E2X">
+                                <rect key="frame" x="44" y="449" width="287" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Loe-Bi-qb1">
+                                <rect key="frame" x="44" y="507" width="287" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="SVF-xn-jty"/>
+                    </view>
+                    <navigationItem key="navigationItem" title=" " id="AGW-UT-ME2"/>
+                    <connections>
+                        <outlet property="authorLabel" destination="Loe-Bi-qb1" id="G0Q-4S-Ao8"/>
+                        <outlet property="captionLabel" destination="7Cx-an-E2X" id="k5D-WL-QOe"/>
+                        <outlet property="dateLabel" destination="k6o-R7-1ZV" id="kfr-1F-fI3"/>
+                        <outlet property="photoView" destination="yoW-LK-vH9" id="Pab-Vg-fh2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K7T-wd-wg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1367" y="2065"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="s5U-ik-odC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7Xs-Oa-gYa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="profile_tab" id="sgP-ow-hXa"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wuE-ZP-beP">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HeO-16-tvP" kind="relationship" relationship="rootViewController" id="14g-J6-8kr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zav-Qn-PJ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="332" y="-63"/>
         </scene>
     </scenes>
     <resources>
+        <image name="feed_tab" width="25" height="25"/>
         <image name="insta_camera_btn" width="25" height="25"/>
         <image name="instagram-text-grey" width="6588" height="2262"/>
+        <image name="profile_tab" width="25" height="25"/>
     </resources>
 </document>

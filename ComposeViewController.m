@@ -8,6 +8,7 @@
 
 #import "ComposeViewController.h"
 #import <Parse/Parse.h>
+#import "Post.h"
 
 @interface ComposeViewController ()
 
@@ -37,9 +38,37 @@
 
 - (IBAction)didTapShare:(id)sender {
     
+    CGSize newSize = CGSizeMake(250, 250);
+    self.photo = [self resizeImage:self.photo withSize:newSize];
+    
+    [Post postUserImage: self.photo withCaption: self.captionField.text withCompletion:^(BOOL worked, NSError * _Nullable __strong error){
+        if(worked)
+        {
+            NSLog(@"Instagram post successfully loaded to server :D");
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else if (error)
+        {
+            NSLog(@"Instagram post failed to load >:("); 
+        }
+    }];
+    
     
 }
 
+- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
+    resizeImageView.image = image;
+    
+    UIGraphicsBeginImageContext(size);
+    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
 
 /*
 #pragma mark - Navigation

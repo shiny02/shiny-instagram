@@ -9,6 +9,7 @@
 #import "FeedCell.h"
 #import "UIImageView+AFNetworking.h"
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @implementation FeedCell
 
@@ -25,6 +26,15 @@
 - (void)setPost:(Post*)post
 {
     _post = post;
+    
+    self.userName.text = self.post.author.username;
+    
+    self.caption.text = self.post.caption;
+    
+  //  [self.photoView setImage:self.post.image];
+    
+    self.photoView.file = self.post[@"image"];
+    [self.photoView loadInBackground];
     
 }
 

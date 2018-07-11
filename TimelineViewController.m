@@ -13,9 +13,15 @@
 #import "Post.h"
 #import "FeedCell.h"
 #import "ComposeViewController.h"
+#import "PostDetailViewController.h"
+#import "InfiniteScrollActivityView.h"
 
 @interface TimelineViewController ()
 @property (strong, nonatomic) UIImage * postImage;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
 @end
 
 @implementation TimelineViewController
@@ -23,7 +29,64 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    
+    // Do any additional setup after loading the view.
+//    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshPosts) userInfo:nil repeats:true];
+   
+    [self refreshPosts];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    
+    [self.refreshControl addTarget:self action:@selector(refreshPosts) forControlEvents:UIControlEventValueChanged];
+    
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+//    InfiniteScrollActivityView* self.loadingMoreView; //?
+    
+    //self.loadingMoreView = [[InfiniteScrollActivityView alloc] init];
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    self.loadingMoreView.hidden = true;
+    [self.tableView addSubview:self.loadingMoreView];
+
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
+    
+    
+    
+    
 }
+
+- (void)refreshPosts {
+    // construct query
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    query.limit = 10;
+    [query orderByDescending:@"createdAt"];
+    //[query includeKey:@"author"];
+    [query includeKeys:@[@"author", @"createdAt"]];
+    // fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            // do something with the array of object returned by the call
+            self.posts = posts;
+            [self.refreshControl endRefreshing];
+            self.isMoreDataLoading = false;
+            [self.loadingMoreView stopAnimating];
+            
+            [self.tableView reloadData];
+            
+        } else {
+            NSLog(@"Did not work :( - %@", error.localizedDescription);
+        }
+    }];
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -43,8 +106,6 @@
 }
 - (IBAction)didTapCompose:(id)sender {
     [self openPhotos];
-    
-    
     
     
 }
@@ -91,14 +152,34 @@
         NSLog(@"Image successfully stored");
         
       
-        [self performSegueWithIdentifier:@"postSegue" sender:nil];
+    [self performSegueWithIdentifier:@"postSegue" sender:nil];
     }];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if(!self.isMoreDataLoading){
 
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            self.loadingMoreView.frame = frame;
+            [self.loadingMoreView startAnimating];
+
+            [self refreshPosts];
+            
+            
+        }
+
+    }
+}
 
 -(NSInteger)tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return self.posts.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,6 +197,9 @@
 //        cell.usernameLabel.text = @"🤖";
 //    }
 //    //    cell.usernameLabel.text = self.messages[indexPath.row][@"user"];
+    
+    cell.post = self.posts[indexPath.row];
+    
     return cell;
     
     
@@ -141,6 +225,18 @@
             NSLog(@"Image loaded");
         }
     }
+    else if([[segue identifier] isEqualToString:@"detailSegue"])
+    {
+        FeedCell * tappedCell = sender;
+        NSIndexPath * indexPath = [self.tableView indexPathForCell:tappedCell];
+        
+        Post * postToDetail = self.posts[indexPath.row];
+        PostDetailViewController * postDetailsViewController = [segue destinationViewController];
+        postDetailsViewController.post = postToDetail;
+        
+    }
+
+
 }
 
 

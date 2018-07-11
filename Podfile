@@ -8,6 +8,10 @@ target 'Shiny-Instagram' do
   # Pods for Shiny-Instagram
   pod 'Parse'
   pod 'AFNetworking'
+  pod 'ParseUI'  
+
+
+
   target 'Shiny-InstagramTests' do
     inherit! :search_paths
     # Pods for testing

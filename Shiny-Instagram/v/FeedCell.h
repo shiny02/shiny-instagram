@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "Post.h"
+
+#import <ParseUI/ParseUI.h>
+
 @interface FeedCell : UITableViewCell
-@property (weak, nonatomic) Post * post;
+@property (strong, nonatomic) Post * post;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+@property (weak, nonatomic) IBOutlet UILabel *caption;
+@property (weak, nonatomic) IBOutlet PFImageView *photoView;
+
 @end
