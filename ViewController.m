@@ -66,6 +66,12 @@
     
 }
 
+- (IBAction)onTap:(id)sender {
+    
+    [self.view endEditing:YES];
+}
+
+
 - (IBAction)signupTapped:(id)sender {
     // initialize a user object
     PFUser *newUser = [PFUser user];

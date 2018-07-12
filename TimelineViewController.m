@@ -19,6 +19,7 @@
 @interface TimelineViewController ()
 @property (strong, nonatomic) UIImage * postImage;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
@@ -205,6 +206,11 @@
     
     
 }
+
+
+
+
+
 
 #pragma mark - Navigation
 

@@ -9,6 +9,7 @@ target 'Shiny-Instagram' do
   pod 'Parse'
   pod 'AFNetworking'
   pod 'ParseUI'  
+  pod 'DateTools'
 
 
 

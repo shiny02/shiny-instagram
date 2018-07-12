@@ -15,6 +15,7 @@
 		85A3054420F41F4D00549368 /* FeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A3054320F41F4D00549368 /* FeedCell.m */; };
 		85A3054720F425F800549368 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A3054620F425F800549368 /* Post.m */; };
 		85B0F6D720F5D0C600F7823F /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B0F6D620F5D0C600F7823F /* InfiniteScrollActivityView.m */; };
+		85B0F6E420F6CF1E00F7823F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85B0F6E320F6CF1E00F7823F /* ProfileViewController.m */; };
 		85BDF0A320F33CE10079FB7F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BDF0A220F33CE10079FB7F /* AppDelegate.m */; };
 		85BDF0A620F33CE10079FB7F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85BDF0A520F33CE10079FB7F /* ViewController.m */; };
 		85BDF0A920F33CE10079FB7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 85BDF0A720F33CE10079FB7F /* Main.storyboard */; };
@@ -63,6 +64,8 @@
 		85A3054620F425F800549368 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = Post.m; path = "Shiny-Instagram/Mdl/Post.m"; sourceTree = SOURCE_ROOT; };
 		85B0F6D520F5D0C600F7823F /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
 		85B0F6D620F5D0C600F7823F /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
+		85B0F6E220F6CF1E00F7823F /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		85B0F6E320F6CF1E00F7823F /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		85BDF09E20F33CE10079FB7F /* Shiny-Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shiny-Instagram.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85BDF0A120F33CE10079FB7F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		85BDF0A220F33CE10079FB7F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				85BDF0A520F33CE10079FB7F /* ViewController.m */,
 				85A3053920F4127100549368 /* TimelineViewController.h */,
 				85A3053A20F4127100549368 /* TimelineViewController.m */,
+				85B0F6E220F6CF1E00F7823F /* ProfileViewController.h */,
+				85B0F6E320F6CF1E00F7823F /* ProfileViewController.m */,
 			);
 			name = "View Controllers";
 			path = ..;
@@ -419,6 +424,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Shiny-Instagram/Pods-Shiny-Instagram-resources.sh",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj",
@@ -426,6 +432,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
@@ -447,6 +454,7 @@
 				85A3053B20F4127100549368 /* TimelineViewController.m in Sources */,
 				85BDF0B120F33CE30079FB7F /* main.m in Sources */,
 				85A3054420F41F4D00549368 /* FeedCell.m in Sources */,
+				85B0F6E420F6CF1E00F7823F /* ProfileViewController.m in Sources */,
 				85A3053E20F41B0A00549368 /* ComposeViewController.m in Sources */,
 				854D319C20F549C2009252C8 /* PostDetailViewController.m in Sources */,
 				85BDF0A320F33CE10079FB7F /* AppDelegate.m in Sources */,

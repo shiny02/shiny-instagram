@@ -31,7 +31,8 @@
     if (PFUser.currentUser) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         
-        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"TimelineNavigationViewController"];
+        self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"MainTabBar"];
+        
         NSLog(@"Hello %@!", PFUser.currentUser.username); 
     }
     
