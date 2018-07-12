@@ -1,3 +1,4 @@
+
 //
 //  TimelineViewController.m
 //  Shiny-Instagram
@@ -23,6 +24,8 @@
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (assign, nonatomic) BOOL isMoreDataLoading;
 @property (strong, nonatomic) InfiniteScrollActivityView *loadingMoreView;
+
+
 @end
 
 @implementation TimelineViewController
@@ -34,7 +37,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    
+
+
     // Do any additional setup after loading the view.
 //    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(refreshPosts) userInfo:nil repeats:true];
    
@@ -63,10 +67,13 @@
     
 }
 
+
+
+
 - (void)refreshPosts {
     // construct query
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    query.limit = 10;
+    query.limit = 20;
     [query orderByDescending:@"createdAt"];
     //[query includeKey:@"author"];
     [query includeKeys:@[@"author", @"createdAt"]];

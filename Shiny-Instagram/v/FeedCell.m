@@ -27,6 +27,11 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    
+    
+    
+    
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -34,6 +39,9 @@
 
     // Configure the view for the selected state
 }
+
+
+
 - (void)setPost:(Post*)post
 {
     _post = post;
@@ -65,6 +73,8 @@
 
     self.profileView.layer.cornerRadius = self.profileView.frame.size.width / 2;
     self.profileView.clipsToBounds = YES;
+    
+    self.likesLabel.text = [[NSString stringWithFormat:@"%@", self.post.likeCount] stringByAppendingString:@" Likes"];
     
 //    self.photoView.layer.cornerRadius = self.photoView.frame.size.width / 2;
 //    self.photoView.clipsToBounds = YES;
