@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
+#import "Post.h"
 
 @interface UserCollectionCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet PFImageView *photoView;
-
+@property (strong, nonatomic) Post * post; 
 @end

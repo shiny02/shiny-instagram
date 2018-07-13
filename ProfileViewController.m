@@ -13,6 +13,7 @@
 #import <ParseUI/ParseUI.h>
 #import "UIImageView+AFNetworking.h"
 #import "UserCollectionCell.h"
+#import "PostDetailViewController.h"
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -191,6 +192,8 @@
     
     cell.photoView.file = post[@"image"];
     
+    cell.post = post;
+    
     [cell.photoView loadInBackground];
     
     return cell;
@@ -199,14 +202,34 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.userPosts.count;
 }
-/*
+
+- (IBAction)didTapCell:(id)sender {
+    [self performSegueWithIdentifier:@"collectionCellSegue"                              sender:sender];
+    
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if([[segue identifier] isEqualToString:@"collectionCellSegue"])
+    {
+        UserCollectionCell * tappedCell = sender;
+        //NSIndexPath * indexPath = [self.collectionView indexPathForCell:tappedCell];
+        
+        Post * postToDetail = tappedCell.post;
+        PostDetailViewController * postDetailsViewController = [segue destinationViewController];
+        postDetailsViewController.post = postToDetail;
+    }
+
+
+
+
 }
-*/
+
 
 @end
