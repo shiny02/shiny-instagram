@@ -186,6 +186,11 @@
     }
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Do some stuff when the row is selected
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 -(NSInteger)tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger)section{
     return self.posts.count;
 }

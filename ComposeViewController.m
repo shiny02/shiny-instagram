@@ -9,6 +9,7 @@
 #import "ComposeViewController.h"
 #import <Parse/Parse.h>
 #import "Post.h"
+#import "MBProgressHUD.h"
 
 @interface ComposeViewController ()
 
@@ -40,12 +41,14 @@
     
     CGSize newSize = CGSizeMake(250, 250);
     self.photo = [self resizeImage:self.photo withSize:newSize];
-    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Post postUserImage: self.photo withCaption: self.captionField.text withCompletion:^(BOOL worked, NSError * _Nullable __strong error){
         if(worked)
         {
             NSLog(@"Instagram post successfully loaded to server :D");
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self dismissViewControllerAnimated:YES completion:^{
+                [hud hideAnimated:YES];
+            }];
         }
         else if (error)
         {

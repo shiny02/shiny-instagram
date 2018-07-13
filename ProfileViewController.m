@@ -12,14 +12,15 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 #import "UIImageView+AFNetworking.h"
+#import "UserCollectionCell.h"
 
-@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 
 @property (weak, nonatomic) IBOutlet PFImageView *profileView;
 
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 
 @end
@@ -29,8 +30,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self; 
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    
+    UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
+    
+    layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 0;
+    
+    CGFloat postersByLine = 3;
+    CGFloat itemWidth = (self.collectionView.frame.size.width - (layout.minimumInteritemSpacing * postersByLine))/postersByLine;
+    CGFloat itemHeight = itemWidth;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    
     if(!self.user){
         self.user = PFUser.currentUser;
     }
@@ -64,7 +76,7 @@
             // do something with the array of object returned by the call
             self.userPosts = posts;
             
-            [self.tableView reloadData];
+            [self.collectionView reloadData];
             
         } else {
             NSLog(@"Did not work :( - %@", error.localizedDescription);
@@ -154,32 +166,38 @@
 //    }];
 }
 
--(NSInteger)tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger)section{
-    return self.userPosts.count;
-}
+//-(NSInteger)tableView:(UITableView *) tableView numberOfRowsInSection:(NSInteger)section{
+//    return self.userPosts.count;
+//}
+//
+//-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell" forIndexPath:indexPath];
+//
+//    cell.post = self.userPosts[indexPath.row];
+//
+//    return cell;
+//
+//}
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    FeedCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FeedCell" forIndexPath:indexPath];
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath{
     
-    //    cell.messageText.text = self.posts[indexPath.row][@"text"];
-    //
-    //    PFUser *user = self.posts[indexPath.row][@"user"];
-    //    if (user != nil) {
-    //        // User found! update username label with username
-    //        cell.usernameLabel.text = user.username;
-    //    } else {
-    //        // No user found, set default username
-    //        cell.usernameLabel.text = @"🤖";
-    //    }
-    //    //    cell.usernameLabel.text = self.messages[indexPath.row][@"user"];
+    UserCollectionCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UserCollectionCell" forIndexPath:indexPath];
     
-    cell.post = self.userPosts[indexPath.row];
+    Post * post = self.userPosts[indexPath.item];
+    
+ 
+    cell.photoView.image = nil;
+    
+    cell.photoView.file = post[@"image"];
+    
+    [cell.photoView loadInBackground];
     
     return cell;
-    
-    
-    
+}
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.userPosts.count;
 }
 /*
 #pragma mark - Navigation

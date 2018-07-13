@@ -10,6 +10,7 @@ target 'Shiny-Instagram' do
   pod 'AFNetworking'
   pod 'ParseUI'  
   pod 'DateTools'
+  pod 'MBProgressHUD'
 
 
 
