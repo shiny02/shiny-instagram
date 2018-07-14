@@ -50,6 +50,8 @@ Here's a walkthrough of implemented user stories:
 
 <img src='https://i.imgur.com/0Zxyrwq.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+Video in github repo, too long
+
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Credits
