@@ -16,6 +16,9 @@
 #import "ComposeViewController.h"
 #import "PostDetailViewController.h"
 #import "InfiniteScrollActivityView.h"
+#import "CommentViewController.h"
+#import "ProfileViewController.h"
+
 
 @interface TimelineViewController ()
 @property (strong, nonatomic) UIImage * postImage;
@@ -55,7 +58,7 @@
     //self.loadingMoreView = [[InfiniteScrollActivityView alloc] init];
     CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
     self.loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
-    self.loadingMoreView.hidden = true;
+     self.loadingMoreView.hidden = true;
     [self.tableView addSubview:self.loadingMoreView];
 
     UIEdgeInsets insets = self.tableView.contentInset;
@@ -76,15 +79,15 @@
     query.limit = 20;
     [query orderByDescending:@"createdAt"];
     //[query includeKey:@"author"];
-    [query includeKeys:@[@"author", @"createdAt"]];
+    [query includeKeys:@[@"author", @"createdAt", @"comments"]];
     // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             // do something with the array of object returned by the call
-            self.posts = posts;
+            self.posts = [posts mutableCopy];
             [self.refreshControl endRefreshing];
             self.isMoreDataLoading = false;
-            [self.loadingMoreView stopAnimating];
+            //[self.loadingMoreView stopAnimating];
             
             [self.tableView reloadData];
             
@@ -146,23 +149,46 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
     // Get the image captured by the UIImagePickerController
-    //UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // Do something with the images (based on your use case)
     self.postImage = editedImage;
     
-    // Dismiss UIImagePickerController to go back to your original view controller
-    
-    //[Post postUserImage: editedImage withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-    
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"Image successfully stored");
         
-      
     [self performSegueWithIdentifier:@"postSegue" sender:nil];
     }];
 }
+
+-(void)loadMoreData{
+    PFQuery *morePosts = [PFQuery queryWithClassName:@"Post"];
+    morePosts.limit = 20;
+    [morePosts orderByDescending:@"createdAt"];
+    //[query includeKey:@"author"];
+    [morePosts includeKeys:@[@"author", @"createdAt", @"comments"]];
+    // fetch data asynchronously
+    morePosts.skip = [self.posts count];
+    [morePosts findObjectsInBackgroundWithBlock:^(NSArray *newPosts, NSError *error) {
+        if (newPosts) {
+            // do something with the array of object returned by the call
+            for(Post *post in newPosts){
+                [self.posts addObject:post];
+            }
+            
+            [self.refreshControl endRefreshing];
+            self.isMoreDataLoading = false;
+            [self.loadingMoreView stopAnimating];
+            
+            [self.tableView reloadData];
+            
+        } else {
+            NSLog(@"Did not work :( - %@", error.localizedDescription);
+        }
+    }];
+    
+}
+
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if(!self.isMoreDataLoading){
@@ -178,7 +204,7 @@
             self.loadingMoreView.frame = frame;
             [self.loadingMoreView startAnimating];
 
-            [self refreshPosts];
+            [self loadMoreData];
             
             
         }
@@ -213,13 +239,22 @@
     
     cell.post = self.posts[indexPath.row];
     
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDetectedSender:)];
+    singleTap.numberOfTapsRequired = 1;
+    [cell.profileView setUserInteractionEnabled:YES];
+    [cell.profileView addGestureRecognizer:singleTap];
+    
+    
+    
     return cell;
     
     
     
 }
 
-
+-(void)tapDetectedSender:(FeedCell *) cell{
+    [self performSegueWithIdentifier:@"profileSegue" sender:cell];
+}
 
 
 
@@ -251,6 +286,33 @@
         Post * postToDetail = self.posts[indexPath.row];
         PostDetailViewController * postDetailsViewController = [segue destinationViewController];
         postDetailsViewController.post = postToDetail;
+        
+    }
+    else if([[segue identifier] isEqualToString:@"commentSegue"])
+    {
+        FeedCell * tappedCell = sender;
+        NSIndexPath * indexPath = [self.tableView indexPathForCell:tappedCell];
+        
+        
+        UINavigationController *navigationController = [segue destinationViewController];
+        CommentViewController *commentViewController = (CommentViewController*)navigationController.topViewController;
+        
+        Post * postToDetail = self.posts[indexPath.row];
+        
+        commentViewController.post = postToDetail;
+        
+    }
+    else if([[segue identifier] isEqualToString:@"profileSegue"])
+    {
+ 
+        FeedCell * tappedCell = sender;
+        NSIndexPath * indexPath = [self.tableView indexPathForCell:tappedCell];
+        
+       ProfileViewController *profileViewController  = [segue destinationViewController];
+        
+        PFUser * userToDetail = self.posts[indexPath.row][@"author"];
+        
+        profileViewController.user = userToDetail;
         
     }
 

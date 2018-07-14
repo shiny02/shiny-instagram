@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet PFImageView *photoView;
 
 @property (weak, nonatomic) IBOutlet UILabel *likesLabel;
+@property (weak, nonatomic) IBOutlet PFImageView *profileView;
 
 
 @end

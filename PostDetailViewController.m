@@ -11,9 +11,11 @@
 #import <ParseUI/ParseUI.h>
 #import "DateTools.h"
 #import "ProfileViewController.h"
+#import "CommentCell.h"
+#import "CommentViewController.h"
 
 
-@interface PostDetailViewController ()
+@interface PostDetailViewController () 
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *photoView;
 @property (weak, nonatomic) IBOutlet PFImageView *profileView;
@@ -23,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likesLabel;
+@property (strong, nonatomic) NSArray * comments;
 
 
 @end
@@ -70,6 +73,15 @@
     self.dateLabel.text = [formatter stringFromDate:self.post.createdAt];
     
     
+    if([self.post.commentCount isEqualToNumber:@1])
+    {
+        self.likesLabel.text = [[NSString stringWithFormat:@"%@", self.post.commentCount] stringByAppendingString:@" Comment"];
+    }
+    else {
+        self.likesLabel.text = [[NSString stringWithFormat:@"%@", self.post.commentCount] stringByAppendingString:@" Comments"];
+    }
+
+    
 
 }
 
@@ -78,7 +90,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-    
+
 
     
 
@@ -94,14 +106,24 @@
     {
       
         
-//        UINavigationController *navigationController = [segue destinationViewController];
-//        ProfileViewController *profileViewController = (ProfileViewController*)navigationController.topViewController;
         
         ProfileViewController *profileViewController = [segue destinationViewController];
         
         profileViewController.user = self.post.author;
 
     }
+    
+    else if([[segue identifier] isEqualToString:@"commentSegue"])
+    {
+        UINavigationController *navigationController = [segue destinationViewController];
+        CommentViewController *commentViewController = (CommentViewController*)navigationController.topViewController;
+        
+        Post * postToDetail = self.post;
+        
+        commentViewController.post = postToDetail;
+        
+    }
+    
 }
 
 

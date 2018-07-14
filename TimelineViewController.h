@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TimelineViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIScrollViewDelegate>
-@property (strong, nonatomic) NSArray * posts; 
+@property (strong, nonatomic) NSMutableArray * posts; 
 @end

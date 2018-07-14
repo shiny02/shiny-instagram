@@ -10,6 +10,9 @@
 		5A8B65667446FC2A2191A085 /* libPods-Shiny-InstagramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FC72B6C0609E2D61A8875F /* libPods-Shiny-InstagramTests.a */; };
 		64F387E2100A6393E11E4723 /* libPods-Shiny-InstagramUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CDF60B1DE7A2EA237DEB0B83 /* libPods-Shiny-InstagramUITests.a */; };
 		8534731B20F81238005FCAA9 /* UserCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8534731A20F81237005FCAA9 /* UserCollectionCell.m */; };
+		8534731E20F85B8E005FCAA9 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 8534731D20F85B8E005FCAA9 /* Comment.m */; };
+		8534732120F861DF005FCAA9 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8534732020F861DF005FCAA9 /* CommentViewController.m */; };
+		8534732720F86611005FCAA9 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8534732620F86611005FCAA9 /* CommentCell.m */; };
 		854D319C20F549C2009252C8 /* PostDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 854D319B20F549C2009252C8 /* PostDetailViewController.m */; };
 		85A3053B20F4127100549368 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A3053A20F4127100549368 /* TimelineViewController.m */; };
 		85A3053E20F41B0A00549368 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85A3053D20F41B0A00549368 /* ComposeViewController.m */; };
@@ -55,6 +58,12 @@
 		74FC72B6C0609E2D61A8875F /* libPods-Shiny-InstagramTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Shiny-InstagramTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8534731920F81237005FCAA9 /* UserCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserCollectionCell.h; sourceTree = "<group>"; };
 		8534731A20F81237005FCAA9 /* UserCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserCollectionCell.m; sourceTree = "<group>"; };
+		8534731C20F85B8E005FCAA9 /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		8534731D20F85B8E005FCAA9 /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		8534731F20F861DF005FCAA9 /* CommentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		8534732020F861DF005FCAA9 /* CommentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		8534732520F86611005FCAA9 /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		8534732620F86611005FCAA9 /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		854D319A20F549C2009252C8 /* PostDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostDetailViewController.h; sourceTree = "<group>"; };
 		854D319B20F549C2009252C8 /* PostDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostDetailViewController.m; sourceTree = "<group>"; };
 		85A3053920F4127100549368 /* TimelineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
@@ -134,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				85A3054520F425F800549368 /* Post.h */,
+				8534731C20F85B8E005FCAA9 /* Comment.h */,
+				8534731D20F85B8E005FCAA9 /* Comment.m */,
 				85A3054620F425F800549368 /* Post.m */,
 			);
 			path = Mdl;
@@ -142,6 +153,8 @@
 		852AC0D520F5395B006A4F22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8534732520F86611005FCAA9 /* CommentCell.h */,
+				8534732620F86611005FCAA9 /* CommentCell.m */,
 				8534731920F81237005FCAA9 /* UserCollectionCell.h */,
 				8534731A20F81237005FCAA9 /* UserCollectionCell.m */,
 				85B0F6D520F5D0C600F7823F /* InfiniteScrollActivityView.h */,
@@ -156,6 +169,8 @@
 		85A3053620F4100700549368 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8534731F20F861DF005FCAA9 /* CommentViewController.h */,
+				8534732020F861DF005FCAA9 /* CommentViewController.m */,
 				854D319A20F549C2009252C8 /* PostDetailViewController.h */,
 				854D319B20F549C2009252C8 /* PostDetailViewController.m */,
 				85A3053C20F41B0A00549368 /* ComposeViewController.h */,
@@ -459,9 +474,12 @@
 				85A3053B20F4127100549368 /* TimelineViewController.m in Sources */,
 				85BDF0B120F33CE30079FB7F /* main.m in Sources */,
 				85A3054420F41F4D00549368 /* FeedCell.m in Sources */,
+				8534732120F861DF005FCAA9 /* CommentViewController.m in Sources */,
 				85B0F6E420F6CF1E00F7823F /* ProfileViewController.m in Sources */,
 				85A3053E20F41B0A00549368 /* ComposeViewController.m in Sources */,
 				8534731B20F81238005FCAA9 /* UserCollectionCell.m in Sources */,
+				8534731E20F85B8E005FCAA9 /* Comment.m in Sources */,
+				8534732720F86611005FCAA9 /* CommentCell.m in Sources */,
 				854D319C20F549C2009252C8 /* PostDetailViewController.m in Sources */,
 				85BDF0A320F33CE10079FB7F /* AppDelegate.m in Sources */,
 				85B0F6D720F5D0C600F7823F /* InfiniteScrollActivityView.m in Sources */,

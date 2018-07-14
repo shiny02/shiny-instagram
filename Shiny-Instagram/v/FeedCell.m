@@ -13,11 +13,11 @@
 #import "DateTools.h"
 
 @interface FeedCell()
-@property (weak, nonatomic) IBOutlet PFImageView *profileView;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
 @property (weak, nonatomic) IBOutlet UIButton *messageButton;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIView *view;
 
 
 @end
@@ -27,10 +27,10 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
-    
-    
-    
+
+}
+
+-(void)tapDetected{
     
 }
 
@@ -74,7 +74,14 @@
     self.profileView.layer.cornerRadius = self.profileView.frame.size.width / 2;
     self.profileView.clipsToBounds = YES;
     
-    self.likesLabel.text = [[NSString stringWithFormat:@"%@", self.post.likeCount] stringByAppendingString:@" Likes"];
+    if([self.post.commentCount isEqualToNumber:@1])
+    {
+        self.likesLabel.text = [[NSString stringWithFormat:@"%@", self.post.commentCount] stringByAppendingString:@" Comment"];
+    }
+    else {
+        self.likesLabel.text = [[NSString stringWithFormat:@"%@", self.post.commentCount] stringByAppendingString:@" Comments"];
+    }
+
     
 //    self.photoView.layer.cornerRadius = self.photoView.frame.size.width / 2;
 //    self.photoView.clipsToBounds = YES;
